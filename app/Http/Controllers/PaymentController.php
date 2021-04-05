@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use DateTime;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 
 class PaymentController extends Controller {
     public function initiate() {
