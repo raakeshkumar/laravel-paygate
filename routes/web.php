@@ -15,5 +15,5 @@ use App\Http\Controllers\PaymentController;
 */
 
 Route::get('/', [PaymentController::class, 'initiate']);
-Route::get('/notify', [PaymentController::class, 'notify'])->name('payment_notify');
-Route::get('/paygate/response', [PaymentController::class, 'pg_response'])->name('payment_response');
+Route::post('/notify', [PaymentController::class, 'notify'])->name('payment_notify');
+Route::post('/paygate/response', [PaymentController::class, 'pg_response'])->name('payment_response');
