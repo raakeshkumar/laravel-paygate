@@ -1,3 +1,4 @@
+<x-layout>
 <div class="col-6 offset-3">
     <div class="mx-auto">
         <h1>Payment Button</h1>
@@ -8,3 +9,4 @@
         </form>
     </div>
 </div>
+</x-layout>

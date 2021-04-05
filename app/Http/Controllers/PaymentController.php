@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use DateTime;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller {
     public function initiate() {
@@ -71,9 +72,9 @@ class PaymentController extends Controller {
             $response         = Http::asForm()->post(env('PAYGATE_QUERY_URL'), $data);
 
             parse_str($response->body(), $output);
-
+            Log::info($output);
             //PAYGATE_ID=10011072130&PAY_REQUEST_ID=23B785AE-C96C-32AF-4879-D2C9363DB6E8&REFERENCE=pgtest_123456789&TRANSACTION_STATUS=1&RESULT_CODE=990017&AUTH_CODE=5T8A0Z&CURRENCY=ZAR&AMOUNT=3299&RESULT_DESC=Auth+Done&TRANSACTION_ID=78705178&RISK_INDICATOR=AX&PAY_METHOD=CC&PAY_METHOD_DETAIL=Visa&CHECKSUM=f57ccf051307d8d0a0743b31ea379aa1
-            if ($output->TRANSACTION_STATUS == '1') {
+            if (!empty($output) and $output['TRANSACTION_STATUS'] == '1') {
                 // Transaction successful
                 $transaction->update([
                     'reference'          => $request->REFERENCE,
