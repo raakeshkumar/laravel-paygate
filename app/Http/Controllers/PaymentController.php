@@ -126,6 +126,6 @@ class PaymentController extends Controller {
             return "Something went wrong";
         }
 
-        return $transaction->transaction_status;
+        return view("payment.response", compact('transaction'));
     }
 }
