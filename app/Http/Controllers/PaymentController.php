@@ -17,11 +17,11 @@ class PaymentController extends Controller {
             'AMOUNT'           => 3299,
             'CURRENCY'         => 'ZAR', //https: //docs.paygate.co.za/#country-codes
             'RETURN_URL'       => route('payment_response'),
-            'NOTIFY_URL'       => route('payment_notify'),
             'TRANSACTION_DATE' => $DateTime->format('Y-m-d H:i:s'),
             'LOCALE'           => 'en-za', //https: //docs.paygate.co.za/#locale-codes
             'COUNTRY'          => 'ZAF', // https: //docs.paygate.co.za/#country-codes
             'EMAIL'            => 'developer@mailinator.com',
+            'NOTIFY_URL'       => route('payment_notify'),
         );
 
         $checksum = md5(implode('', $data) . env('PAYGATE_SECRET'));
